@@ -19,7 +19,7 @@ router.put("/updateSeat", async (request, response) => {
     try {
         const requestBody = request.body;
 
-        const updatedCinema = await userCartLogic.updateCinemaSeatAsync(requestBody.cinemaId, requestBody.seatNumber, requestBody.userId);
+        const updatedCinema = await cinemasLogic.updateCinemaSeatAsync(requestBody.cinemaId, requestBody.seatNumber, requestBody.userId);
         if (!updatedCinema) {
             response.status(404).send(`${requestBody.seat} is unavailable.`);
             return;
@@ -27,7 +27,7 @@ router.put("/updateSeat", async (request, response) => {
         response.json(updatedCinema);
     }
     catch (err) {
-        response.status(500).send(errorsHelper.getError(err));
+        response.status(500).send(err.message);
     }
 });
 

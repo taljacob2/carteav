@@ -16,7 +16,7 @@ async function getIsCinemaSeatAvailableAsync(cinemaId, seatNumber) {
 
 async function getCinemaByIdAsync(cinemaId) {
     const sql = `SELECT * FROM cinemas
-                 WHERE cartId = ${cinemaId}`;
+                 WHERE id = ${cinemaId}`;
     
     const cinemas = await dal.executeAsync(sql);
     return cinemas[0];
