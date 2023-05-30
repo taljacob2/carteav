@@ -16,10 +16,10 @@ server.use(cors());
 server.use(express.json());
 
 // Route to "static" directory.
-app.use(express.static('static'));
+server.use(express.static('static'));
 
 // Define main router. Main page.
-app.get('/', (req, res) => {
+server.get('/', (req, res) => {
     res.sendFile('./static/index.html', { root: __dirname })
 })
 
