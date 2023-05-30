@@ -13,7 +13,7 @@ let scanForOldUnaprovedSeatsAndDeleteThem =  async () => {
                     const log = await logsLogic.getLogByIdAsync(logId);        
                     if (new Date().getTime() - new Date(log?.timestamp)?.getTime() > 15 * 60 * 1000 && !log?.approved) {
                         try {
-                            await logsLogic.updateLogValueAsync(logId, "The seat wasn't approved in the limited time");
+                            await logsLogic.updateLogValueAsync(logId, "The seat was not approved in the limited time");
                             const updatedCinema = await cinemasLogic.updateCinemaSeatAsNullAsync(cinema.id, `seat${index + 1}`);
                             if (!updatedCinema) {
                                 console.error(`unexpected error occured`);

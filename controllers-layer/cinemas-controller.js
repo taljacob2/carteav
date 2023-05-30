@@ -29,9 +29,6 @@ router.get("/:cinemaId", async (request, response) => {
 router.put("/updateSeat", async (request, response) => {
     try {
         const requestBody = request.body;
-
-        console.log(requestBody);
-
         const updatedCinema = await cinemasLogic.updateCinemaSeatAsync(requestBody.cinemaId, requestBody.seatNumber, requestBody.userId);
         if (!updatedCinema) {
             response.status(404).send(`${requestBody.seat} is unavailable.`);
@@ -47,7 +44,6 @@ router.put("/updateSeat", async (request, response) => {
 router.put("/updateSeatAsNull", async (request, response) => {
     try {
         const requestBody = request.body;
-
         const updatedCinema = await cinemasLogic.updateCinemaSeatAsNullAsync(requestBody.cinemaId, requestBody.seatNumber);
         if (!updatedCinema) {
             response.status(500).send(`unexpected error occured`);
