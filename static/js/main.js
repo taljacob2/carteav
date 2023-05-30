@@ -40,7 +40,6 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                $( "div.second" ).replaceWith( "<h2>New heading</h2>" );
                 cinemas[currentCinemaIdSelection - 1] = data;
                 getSeats();
             },
@@ -64,6 +63,52 @@
         return isAdminUser;
     }
 
+    function updateLogValueForApproval(logId) {
+        $.ajax({
+            type: "PUT",
+            url: `${HOST}/api/logs/updateLogValue/approved/${logId}`,
+            data: JSON.stringify({}),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`,
+                function (data, status) {
+                    if (status === "success") {
+                        cinemas[currentCinemaIdSelection - 1] = data;
+                        getSeats();
+                    }
+                });
+            },
+            error: function (data) {
+                
+            }
+        })
+    }
+
+    function updateLogValueForDecline(logId) {
+        $.ajax({
+            type: "PUT",
+            url: `${HOST}/api/logs/updateLogValue/declined/${logId}`,
+            data: JSON.stringify({}),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`,
+                function (data, status) {
+                    if (status === "success") {
+                        cinemas[currentCinemaIdSelection - 1] = data;
+                        getSeats();
+                    }
+                });
+            },
+            error: function (data) {
+                
+            }
+        })
+    }
+
     let selectedCinema;
     function getSeats(e) {
         $(".all-buttons").remove();
@@ -75,7 +120,7 @@
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
             if (isAdminUser && logId){
-                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat">approve</div><div class="decline-seat">decline</div></div></div>`);
+                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat" onclick=updateLogValueForApproval(${logId})>approve</div><div class="decline-seat" onclick=updateLogValueForDecline(${logId})>decline</div></div></div>`);
             } else if (!logId) {
                 seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
             }

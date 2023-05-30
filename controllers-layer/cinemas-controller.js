@@ -15,6 +15,17 @@ router.get("/", async (request, response) => {
     }
 });
 
+router.get("/:cinemaId", async (request, response) => {
+    try {
+        const cinemaId = +request.params.cinemaId;
+        const cinema = await cinemasLogic.getCinemaByIdAsync(cinemaId);
+        response.json(cinema);
+    }
+    catch (err) {
+        response.status(500).send(err.message);
+    }
+});
+
 router.put("/updateSeat", async (request, response) => {
     try {
         const requestBody = request.body;
