@@ -60,6 +60,7 @@ div.seat {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    border-radius: 0.5em;
 }
 
 div.seat.taken {
