@@ -18,6 +18,7 @@
     }
 
     
+    let currentCinemaIdSelection;
     let cinemas;
     function getCinemaSelection() {
         const select = $('#select-cinema');
@@ -26,8 +27,20 @@
         });
     }
 
-    function getSeats() {
-        console.log("hello");
+    let selectedCinema;
+    function getSeats(e) {
+        let seats = $("#seat-list");
+
+        currentCinemaIdSelection = +e.target.value;
+        selectedCinema = cinemas.find(cinema => cinema.id === currentCinemaIdSelection);
+        
+        for (let index = 0; index < 4; index++) {
+            const logId = selectedCinema[`seat${index + 1}`];
+            const divButton = seats.append(`<div class="seat" id="seat${index + 1}">seat${index + 1}</div>`);
+            if (logId) {
+                divButton.addClass("taken");
+            }
+        }
     }
 
 

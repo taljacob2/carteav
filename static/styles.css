@@ -46,10 +46,19 @@ a {
     margin-left: 3em;
 }
 
-#apples-quantity {
-    background-color: #ffc800;
+div#seat-list {
+    display: flex;
+    justify-content: center;
 }
 
-button.taken {
-    background-color: #ff3700;
+div.seat {
+    background-color: #00ff337c;
+    margin: 1em;
+    width: 6em;
+    height: 7vh;
+    text-align: center;
+}
+
+div.seat.taken {
+    background-color: #ff3700af;
 }
