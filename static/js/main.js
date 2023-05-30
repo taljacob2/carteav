@@ -29,6 +29,7 @@
 
     let selectedCinema;
     function getSeats(e) {
+        $(".seat").remove();
         let seats = $("#seat-list");
 
         currentCinemaIdSelection = +e.target.value;
@@ -36,9 +37,9 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            const divButton = seats.append(`<div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
+            seats.append(`<div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
             if (logId) {
-                divButton.addClass("taken");
+                $(`#seat${index + 1}`).addClass("taken");
             }
         }
     }
