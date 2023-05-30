@@ -21,7 +21,8 @@ async function addLogAsync(log) {
                  '${log.userId}',
                  '${log.value}',
                  '${log.timestamp}',
-                 '${logApproved}'
+                 '${logApproved}',
+                 '${log.seatNumber}'
                   );`
     
     const info = await dal.executeAsync(sql);

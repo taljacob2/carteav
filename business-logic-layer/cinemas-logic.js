@@ -31,7 +31,8 @@ async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
     const newLog = await logsLogic.addLogAsync({
         userId,
         value: "waiting for approval",
-        timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")
+        timestamp: new Date().toISOString().slice(0, 19).replace("T", " "),
+        seatNumber: seatNumber
     })
 
     const sql = `UPDATE cinemas SET ${seatNumber} = ${newLog.id}
@@ -55,9 +56,21 @@ async function updateCinemaSeatAsNullAsync(cinemaId, seatNumber) {
     return updatedCinema;
 }
 
+async function findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logId, seatNumber) {
+    const sql = `SELECT * FROM cinemas WHERE ${seatNumber} = ${logId}`;
+    
+    const cinema = await dal.executeAsync(sql);
+    if (!cinema) {
+        return;
+    }
+
+    await updateCinemaSeatAsNullAsync(cinema.id, seatNumber);
+}
+
 module.exports = {
     getAllCinemasAsync,
     updateCinemaSeatAsync,
     getCinemaByIdAsync,
-    updateCinemaSeatAsNullAsync
+    updateCinemaSeatAsNullAsync,
+    findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync
 }

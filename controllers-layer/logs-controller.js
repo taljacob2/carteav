@@ -1,5 +1,6 @@
 const express = require("express");
 const logsLogic = require("../business-logic-layer/logs-logic");
+const cinemasLogic = require("../business-logic-layer/cinemas-logic");
 
 const router = express.Router();
 
@@ -18,6 +19,7 @@ router.put("/updateLogValue/declined/:logId", async (request, response) => {
     try {
         const logId = +request.params.logId;
         const logs = await logsLogic.updateLogValueAsync(logId, "admin declined");
+        await cinemasLogic.findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logs.id, logs.seatNumber);
         response.json(logs);
     }
     catch (err) {
