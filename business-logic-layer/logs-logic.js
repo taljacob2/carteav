@@ -19,7 +19,8 @@ async function addLogAsync(log) {
     const sql = `INSERT INTO logs VALUES (DEFAULT,
                  '${log.userId}',
                  '${log.value}',
-                 '${log.timestamp}'
+                 '${log.timestamp}',
+                 0
                   );`
     
     const info = await dal.executeAsync(sql);
