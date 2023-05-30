@@ -29,4 +29,6 @@ let scanForOldUnaprovedSeatsAndDeleteThem = greenlet( async () => {
 
 })
 
-console.log(await scanForOldUnaprovedSeatsAndDeleteThem())
+module.exports = {
+    scanForOldUnaprovedSeatsAndDeleteThem
+}
