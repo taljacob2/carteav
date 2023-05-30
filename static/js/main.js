@@ -29,8 +29,11 @@
 
     function login(username) {        
         $.get(`${HOST}/api/users/login/${username}`,
-            function (data, status) {
-                localStorage.setItem("userId", data.id);
+            function (data, status) {                
+                if (status === "success") {
+                    localStorage.setItem("userId", data.id);
+                    window.location.replace(`${HOST}/cinemas.html`);
+                }
             }
         );
     }
