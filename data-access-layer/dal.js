@@ -1,9 +1,9 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 
 const connection = mysql.createPool({
-    host: config.mysql.host,
-    user: config.mysql.user,
-    password: config.mysql.password,
+    host: process.env.MYSQLDB_HOST || config.mysql.host,
+    user: process.env.MYSQLDB_USER || config.mysql.user,
+    password: process.env.MYSQLDB_ROOT_PASSWORD || config.mysql.password,
     database: config.mysql.database
 });
 
