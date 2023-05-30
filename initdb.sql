@@ -28,6 +28,10 @@ CREATE TABLE `cinemas` (
   CONSTRAINT `cinemas_ibfk_4` FOREIGN KEY (`seat4`) REFERENCES `users` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+INSERT INTO `cinemas` (`id`, `time`, `seat1`, `seat2`, `seat3`, `seat4`) VALUES
+(1,	'2023-05-30 10:37:18',	NULL,	NULL,	NULL,	NULL),
+(2,	'2023-05-30 10:37:24',	NULL,	NULL,	NULL,	NULL),
+(3,	'2023-05-30 10:37:26',	NULL,	NULL,	NULL,	NULL);
 
 CREATE TABLE `logs` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -46,4 +50,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2023-05-30 10:08:16
+-- 2023-05-30 10:41:42
