@@ -115,7 +115,7 @@
         let seats = $("#seat-list");
 
         currentCinemaIdSelection = +e?.target?.value ? +e?.target?.value : currentCinemaIdSelection;
-        selectedCinema = cinemas.find(cinema => cinema.id === currentCinemaIdSelection);
+        selectedCinema = cinemas[currentCinemaIdSelection - 1];
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
