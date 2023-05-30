@@ -16,11 +16,12 @@ async function getLogByIdAsync(logId) {
 }
 
 async function addLogAsync(log) {
+    const logApproved = 0;
     const sql = `INSERT INTO logs VALUES (DEFAULT,
                  '${log.userId}',
                  '${log.value}',
                  '${log.timestamp}',
-                 0
+                 '${logApproved}'
                   );`
     
     const info = await dal.executeAsync(sql);
