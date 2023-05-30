@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const express = require("express");
 const cors = require("cors");
 const cinemasController = require("./controllers-layer/cinemas-controller");
-const teamsController = require("./controllers-layer/teams-controller");
+const usersController = require("./controllers-layer/users-controller");
 
 const server = express();
 
@@ -14,6 +14,6 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/api/cinemas", cinemasController);
-server.use("/api/teams", teamsController);
+server.use("/api/users", usersController);
 
 server.listen(3001, () => console.log("Listening..."));
