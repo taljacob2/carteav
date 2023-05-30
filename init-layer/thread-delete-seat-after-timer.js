@@ -9,7 +9,7 @@ let scanForOldUnaprovedSeatsAndDeleteThem = greenlet( async () => {
         try {
             const logId = cinema[`seat${index + 1}`];
             const log = await logsLogic.getLogByIdAsync(logId);
-            if (new Date().now - log.timestamp > 15 && !log.approved) {
+            if (new Date().getTime() - new Date(log.timestamp).getTime() > 15 * 60 * 1000 && !log.approved) {
                 try {            
                     const updatedCinema = await cinemasLogic.updateCinemaSeatAsNullAsync(cinema.id, `seat${index + 1}`);
                     if (!updatedCinema) {
