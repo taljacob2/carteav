@@ -14,19 +14,27 @@ async function getIsCinemaSeatAvailableAsync(cinemaId, seatNumber) {
     return cinemas.length;
 }
 
+async function getCinemaByIdAsync(cinemaId) {
+    const sql = `SELECT * FROM cinemas
+                 WHERE cartId = ${cinemaId}`;
+    
+    const cinemas = await dal.executeAsync(sql);
+    return cinemas[0];
+}
+
 async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
     if (!getIsCinemaSeatAvailableAsync(cinemaId, seatNumber)){
         return;
     }
 
-    const sql = `UPDATE cinemas SET isFinished = 1
-                 WHERE cartId = ?`;
+    const sql = `UPDATE cinemas SET ${seatNumber} = ${userId}
+                 WHERE id = ${cinemaId}`;
     
-    await dal.executeAsync(sql, cartId);
+    await dal.executeAsync(sql);
 
-    // Get the updated cart
-    const userCart = await getUpdatedUserCartAsync(cartId);
-    return userCart;
+    // Get the updated cinema
+    const updatedCinema = await getCinemaByIdAsync(cinemaId);
+    return updatedCinema;
 }
 
 module.exports = {
