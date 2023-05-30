@@ -40,10 +40,13 @@ router.post("/", async (request, response) => {
 });
 
 // Get user by username
-router.get("/:username", async (request, response) => {
+router.get("/login/:username", async (request, response) => {
     try {
         const username = request.params.username;
         const user = await usersLogic.getUserByUsernameAsync(username);
+        if (!user) {
+            response.status(404).send("user not found.");
+        }
         response.json(user);
     }
     catch (err) {

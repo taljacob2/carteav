@@ -8,7 +8,7 @@ async function getAllUsersAsync() {
 }
 
 async function getUserByUsernameAsync(username) {
-    const sql = `SELECT * FROM users WHERE username = ${username}`;
+    const sql = `SELECT * FROM users WHERE username = '${username}'`;
     
     const users = await dal.executeAsync(sql);
     return users[0];
