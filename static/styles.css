@@ -49,3 +49,7 @@ a {
 #apples-quantity {
     background-color: #ffc800;
 }
+
+button.taken {
+    background-color: #ff3700;
+}

@@ -26,6 +26,10 @@
         });
     }
 
+    function getSeats() {
+        console.log("hello");
+    }
+
 
     pageLoader();
     function pageLoader() {
@@ -43,6 +47,9 @@
                 login(username.value);
             });
         } else if ($('.cinemas-page').length) {
+                const select = $('#select-cinema');
+                select[0].addEventListener("change", getSeats);
+
                 $.get(`${HOST}/api/cinemas`,
                 function (data, status) {                
                     if (status === "success") {
