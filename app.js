@@ -15,6 +15,14 @@ dotenv.config()
 server.use(cors());
 server.use(express.json());
 
+// Route to "static" directory.
+app.use(express.static('static'));
+
+// Define main router. Main page.
+app.get('/', (req, res) => {
+    res.sendFile('./static/index.html', { root: __dirname })
+})
+
 server.use("/api/cinemas", cinemasController);
 server.use("/api/users", usersController);
 server.use("/api/logs", logsController);
@@ -22,4 +30,4 @@ server.use("/api/logs", logsController);
 server.listen(3001, () => console.log("Listening..."));
 
 // Start thread.
-await threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem();
+// await threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem();

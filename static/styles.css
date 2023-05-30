@@ -1,0 +1,51 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+:root {
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    margin: 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: #00b3ff;
+}
+
+.main {
+    padding: 2em;
+    font-size: 1.2em;
+}
+
+.wrapper {
+    /* width: 40%; */
+    margin: auto;
+    max-width: 40em;
+}
+
+.wrapper h3 {
+    text-align: center;
+}
+
+.logo {
+    height: 3em;
+}
+
+.title {
+    margin: auto;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 55%;
+    text-align: center;
+}
+
+.section .content {
+    margin-left: 3em;
+}
+
+#apples-quantity {
+    background-color: #ffc800;
+}

@@ -1,6 +1,6 @@
-import greenlet from 'greenlet'
+const greenlet = require('greenlet');
 const cinemasController = require("../controllers-layer/cinemas-controller");
-const logsLogic = require("../logics-layer/logs-logic");
+const logsLogic = require("../business-logic-layer/logs-logic");
 
 let scanForOldUnaprovedSeatsAndDeleteThem = greenlet( async () => {
     const cinemas = cinemasController.get();
