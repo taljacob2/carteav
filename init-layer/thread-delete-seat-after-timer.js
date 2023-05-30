@@ -1,19 +1,32 @@
 import greenlet from 'greenlet'
 const cinemasController = require("../controllers-layer/cinemas-controller");
-const cinemasController = require("../controllers-layer/cinemas-controller");
+const logsLogic = require("../logics-layer/logs-logic");
 
-let getName = greenlet( async () => {
+let scanForOldUnaprovedSeatsAndDeleteThem = greenlet( async () => {
     const cinemas = cinemasController.get();
 
-    for (let index = 0; index < array.length; index++) {
-        const element = array[index];
-        for
-    }
+    cinemas.forEach(async (cinema, index) => {
+        try {
+            const logId = cinema[`seat${index + 1}`];
+            const log = await logsLogic.getLogByIdAsync(logId);
+            if (new Date().now - log.timestamp > 15 && !log.approved) {
+                try {            
+                    const updatedCinema = await cinemasLogic.updateCinemaSeatAsNullAsync(cinema.id, `seat${index + 1}`);
+                    if (!updatedCinema) {
+                        console.err(`unexpected error occured`);
+                        return;
+                    }
+                }
+                catch (err) {
+                    console.err(err.message);
+                }
+            }
+        }
+        catch (err) {
+            console.err(err.message);
+        }
+    });
 
-    let url = `https://api.github.com/users/${username}`
-    let res = await fetch(url)
-    let profile = await res.json()
-    return profile.name
 })
 
-console.log(await getName('developit'))
+console.log(await scanForOldUnaprovedSeatsAndDeleteThem())
