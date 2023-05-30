@@ -66,7 +66,7 @@
 
     let selectedCinema;
     function getSeats(e) {
-        $(".seat").remove();
+        $(".all-buttons").remove();
         let seats = $("#seat-list");
 
         currentCinemaIdSelection = +e?.target?.value ? +e?.target?.value : currentCinemaIdSelection;
