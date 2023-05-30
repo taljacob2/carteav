@@ -40,13 +40,9 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                $.get(`${HOST}/api/cinemas`,
-                function (data, status) {
-                    if (status === "success") {
-                        cinemas = data;
-                        getCinemaSelection();
-                    }
-                });
+                $( "div.second" ).replaceWith( "<h2>New heading</h2>" );
+                cinemas[currentCinemaIdSelection - 1] = data;
+                getSeats();
             },
             error: function (data) {
                 
@@ -59,7 +55,7 @@
         $(".seat").remove();
         let seats = $("#seat-list");
 
-        currentCinemaIdSelection = +e.target.value;
+        currentCinemaIdSelection = +e?.target?.value ? +e?.target?.value : currentCinemaIdSelection;
         selectedCinema = cinemas.find(cinema => cinema.id === currentCinemaIdSelection);
         
         for (let index = 0; index < 4; index++) {
