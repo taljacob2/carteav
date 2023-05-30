@@ -131,6 +131,20 @@
             }
 
             $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
+
+            // Remove admin-buttons.
+            let log;
+            if (logId){
+                $.get(`${HOST}/api/logs/${logId}`,
+                function (data, status) {
+                    if (status === "success") {
+                        log = data;
+                        if (log.approved) {
+                            $(".admin-buttons").remove();
+                        }
+                    }
+                });            
+            }
         }
     }
 
