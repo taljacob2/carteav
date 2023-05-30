@@ -27,17 +27,29 @@ router.post("/", async (request, response) => {
     }
 });
 
-// // Get Meetings by Team Id
-// router.get("/:teamId", async (request, response) => {
-//     try {
-//         const teamId = +request.params.teamId;
-//         const meetings = await meetingsLogic.getMeetingsByTeamAsync(teamId);
-//         response.json(meetings);
-//     }
-//     catch (err) {
-//         response.status(500).send(err.message);
-//     }
-// });
+// Add User
+router.post("/", async (request, response) => {
+    try {
+        const user = request.body;
+        const addedUser = await usersLogic.addUserAsync(user);
+        response.status(201).send(addedUser);
+    }
+    catch (err) {
+        response.status(500).send(err.message);
+    }
+});
+
+// Get user by username
+router.get("/:username", async (request, response) => {
+    try {
+        const username = request.params.username;
+        const user = await usersLogic.getUserByUsernameAsync(username);
+        response.json(user);
+    }
+    catch (err) {
+        response.status(500).send(err.message);
+    }
+});
 
 
 module.exports = router;

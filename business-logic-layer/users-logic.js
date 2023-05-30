@@ -7,6 +7,13 @@ async function getAllUsersAsync() {
     return users;
 }
 
+async function getUserByUsernameAsync(username) {
+    const sql = `SELECT * FROM users WHERE username = ${username}`;
+    
+    const users = await dal.executeAsync(sql);
+    return users[0];
+}
+
 async function addUserAsync(user) {
     const sql = `INSERT INTO users VALUES (DEFAULT,
                  '${user.username}'
@@ -20,5 +27,6 @@ async function addUserAsync(user) {
 
 module.exports = {
     getAllUsersAsync,
+    getUserByUsernameAsync,
     addUserAsync
 }

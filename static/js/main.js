@@ -11,4 +11,13 @@
     }
 
     fetchApples()
+
+    function login(username) {
+        $.get(`${HOST}/api/users/login/${username}`,
+            function (data, status) {
+                localStorage.setItem("userId", data.id);
+            }
+        );
+    }
+
 }(jQuery));
