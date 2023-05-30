@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const cinemasController = require("./controllers-layer/cinemas-controller");
 const usersController = require("./controllers-layer/users-controller");
+const logsController = require("./controllers-layer/logs-controller");
 
 const server = express();
 
@@ -15,5 +16,6 @@ server.use(express.json());
 
 server.use("/api/cinemas", cinemasController);
 server.use("/api/users", usersController);
+server.use("/api/logs", logsController);
 
 server.listen(3001, () => console.log("Listening..."));

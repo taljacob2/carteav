@@ -7,6 +7,14 @@ async function getAllLogsAsync() {
     return logs;
 }
 
+async function getLogByIdAsync(logId) {
+    const sql = `SELECT * FROM logs
+                 WHERE id = ${logId}`;
+    
+    const logs = await dal.executeAsync(sql);
+    return logs[0];
+}
+
 async function addLogAsync(log) {
     const sql = `INSERT INTO logs VALUES (DEFAULT,
                  '${log.userId}',
@@ -22,5 +30,6 @@ async function addLogAsync(log) {
 
 module.exports = {
     getAllLogsAsync,
+    getLogByIdAsync,
     addLogAsync
 }
