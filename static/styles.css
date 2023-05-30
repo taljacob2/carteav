@@ -83,16 +83,14 @@ div.admin-buttons {
     padding: 0.5em;
     justify-content: space-between;
     align-items: center;
+    border-radius: 0.2em;
+    cursor: pointer;
 }
 
 div.approve-seat {
-    background-color: #00ff7776;
-    cursor: auto;
-    border-radius: 0.2em;
+    background-color: #00ff7776;    
 }
 
 div.decline-seat {
     background-color: #ff660066;
-    cursor: auto;
-    border-radius: 0.2em;
 }
