@@ -24,7 +24,7 @@ async function getCinemaByIdAsync(cinemaId) {
 
 async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
     if (!getIsCinemaSeatAvailableAsync(cinemaId, seatNumber)){
-        return;
+        throw new Error("seat is unavailable");
     }
 
     const sql = `UPDATE cinemas SET ${seatNumber} = ${userId}
@@ -37,8 +37,20 @@ async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
     return updatedCinema;
 }
 
+async function updateCinemaSeatAsNullAsync(cinemaId, seatNumber) {
+    const sql = `UPDATE cinemas SET ${seatNumber} = NULL
+                 WHERE id = ${cinemaId}`;
+    
+    await dal.executeAsync(sql);
+
+    // Get the updated cinema
+    const updatedCinema = await getCinemaByIdAsync(cinemaId);
+    return updatedCinema;
+}
+
 module.exports = {
     getAllCinemasAsync,
     updateCinemaSeatAsync,
-    getCinemaByIdAsync
+    getCinemaByIdAsync,
+    updateCinemaSeatAsNullAsync
 }

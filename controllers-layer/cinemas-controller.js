@@ -27,6 +27,22 @@ router.put("/updateSeat", async (request, response) => {
         response.json(updatedCinema);
     }
     catch (err) {
+        response.status(400).send(err.message);
+    }
+});
+
+router.put("/updateSeatAsNull", async (request, response) => {
+    try {
+        const requestBody = request.body;
+
+        const updatedCinema = await cinemasLogic.updateCinemaSeatAsNullAsync(requestBody.cinemaId, requestBody.seatNumber);
+        if (!updatedCinema) {
+            response.status(500).send(`unexpected error occured`);
+            return;
+        }
+        response.json(updatedCinema);
+    }
+    catch (err) {
         response.status(500).send(err.message);
     }
 });
