@@ -54,5 +54,10 @@ router.get("/login/:username", async (request, response) => {
     }
 });
 
+// Get user by username
+router.get("/isAdmin/:userId", async (request, response) => {
+    const userId = request.params.username;
+    response.status(200).send(userId === 1);
+});
 
 module.exports = router;
