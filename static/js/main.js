@@ -74,9 +74,9 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            if (isAdminUser){
+            if (isAdminUser && logId){
                 seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat">approve</div><div class="decline-seat">decline</div></div></div>`);
-            } else {
+            } else if (!logId) {
                 seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
             }
             if (logId) {
