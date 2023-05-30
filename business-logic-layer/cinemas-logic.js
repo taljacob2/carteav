@@ -28,7 +28,11 @@ async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
         throw new Error("seat is unavailable");
     }
 
-    const newLog = logsLogic.addLogAsync({userId, value: "waiting for approval", timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")})
+    const newLog = await logsLogic.addLogAsync({
+        userId,
+        value: "waiting for approval",
+        timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")
+    })
 
     const sql = `UPDATE cinemas SET ${seatNumber} = ${newLog.id}
                  WHERE id = ${cinemaId}`;
