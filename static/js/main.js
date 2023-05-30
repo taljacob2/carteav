@@ -13,8 +13,9 @@
         );
     }
 
-    function insertLog() {
-
+    let selectedSeatNumber;
+    function insertLog(e) {
+        selectedSeatNumber = e.target.innerText;
     }
 
     
@@ -41,6 +42,8 @@
             if (logId) {
                 $(`#seat${index + 1}`).addClass("taken");
             }
+
+            $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
         }
     }
 
