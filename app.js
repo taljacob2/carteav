@@ -30,6 +30,4 @@ server.use("/api/logs", logsController);
 server.listen(3001, () => console.log("Listening..."));
 
 // Start thread.
-// setInterval(threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem, 1000 * 60 * 1)
-
-threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem()
+setInterval(threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem, 1000 * 5)
