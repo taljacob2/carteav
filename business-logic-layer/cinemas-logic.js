@@ -59,7 +59,9 @@ async function updateCinemaSeatAsNullAsync(cinemaId, seatNumber) {
 async function findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logId, seatNumber) {
     const sql = `SELECT * FROM cinemas WHERE ${seatNumber} = ${logId}`;
     
-    const cinema = await dal.executeAsync(sql);
+    const cinemas = await dal.executeAsync(sql);
+    const cinema = cinemas[0];
+    console.log(cinema);
     if (!cinema) {
         return;
     }
