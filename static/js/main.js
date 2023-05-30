@@ -36,7 +36,7 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            const divButton = seats.append(`<div class="seat" id="seat${index + 1}">seat${index + 1}</div>`);
+            const divButton = seats.append(`<div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
             if (logId) {
                 divButton.addClass("taken");
             }
