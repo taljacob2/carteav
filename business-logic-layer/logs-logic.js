@@ -28,8 +28,20 @@ async function addLogAsync(log) {
     return log;
 }
 
+async function updateLogAsApprovedByLogIdAsync(logId) {
+    const sql = `UPDATE logs SET approved = 1
+                 WHERE id = ${logId}`;
+    
+    await dal.executeAsync(sql);
+
+    // Get the updated 
+    const updatedLog = await getLogByIdAsync(logId);
+    return updatedLog;
+}
+
 module.exports = {
     getAllLogsAsync,
     getLogByIdAsync,
-    addLogAsync
+    addLogAsync,
+    updateLogAsApprovedByLogIdAsync
 }
