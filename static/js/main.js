@@ -64,7 +64,6 @@
     }
 
     function updateLogValueForApproval(logId) {
-        console.log("aprooved");
         $.ajax({
             type: "PUT",
             url: `${HOST}/api/logs/updateLogValue/approved/${logId}`,
@@ -88,7 +87,6 @@
     }
 
     function updateLogValueForDecline(logId) {
-        console.log("declined");
         $.ajax({
             type: "PUT",
             url: `${HOST}/api/logs/updateLogValue/declined/${logId}`,
