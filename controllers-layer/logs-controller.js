@@ -30,7 +30,7 @@ router.put("/updateLogValue/approved/:logId", async (request, response) => {
         const logId = +request.params.logId;
         console.log(logId);
         const logs = await logsLogic.updateLogValueAsync(logId, "admin approved");
-        logs = await updateLogAsApprovedByLogIdAsync(logId)
+        logs = await logsLogic.updateLogAsApprovedByLogIdAsync(logId);
         response.json(logs);
     }
     catch (err) {
