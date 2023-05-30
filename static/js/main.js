@@ -13,19 +13,45 @@
         );
     }
 
-    let selectedSeatNumber;
-    function insertLog(e) {
-        selectedSeatNumber = e.target.innerText;
-    }
 
     
     let currentCinemaIdSelection;
     let cinemas;
     function getCinemaSelection() {
+        $("option.cinema").remove()
+
         const select = $('#select-cinema');
         cinemas.forEach(cinema => {
-            select.append(`<option value="${cinema.id}">${cinema.time}</option>`);
+            select.append(`<option class="cinema" value="${cinema.id}">${cinema.time}</option>`);
         });
+    }
+
+
+    let selectedSeatNumber;
+    function insertLog(e) {
+        selectedSeatNumber = e.target.innerText;
+        const userId = localStorage.getItem("userId");
+
+        $.ajax({
+            type: "PUT",
+            url: `${HOST}/api/cinemas/updateSeat`,
+            data: JSON.stringify({cinemaId: currentCinemaIdSelection, seatNumber: selectedSeatNumber, userId: userId}),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                $.get(`${HOST}/api/cinemas`,
+                function (data, status) {
+                    if (status === "success") {
+                        cinemas = data;
+                        getCinemaSelection();
+                    }
+                });
+            },
+            error: function (data) {
+                
+            }
+        })
     }
 
     let selectedCinema;
@@ -68,13 +94,12 @@
                 select[0].addEventListener("change", getSeats);
 
                 $.get(`${HOST}/api/cinemas`,
-                function (data, status) {                
+                function (data, status) {
                     if (status === "success") {
                         cinemas = data;
                         getCinemaSelection();
                     }
-                }
-            );
+                });
         }
     }    
 

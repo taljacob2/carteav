@@ -64,5 +64,5 @@ div.seat {
 
 div.seat.taken {
     background-color: #ff3700af;
-    cursor: none;
+    cursor: auto;
 }

@@ -19,6 +19,8 @@ router.put("/updateSeat", async (request, response) => {
     try {
         const requestBody = request.body;
 
+        console.log(requestBody);
+
         const updatedCinema = await cinemasLogic.updateCinemaSeatAsync(requestBody.cinemaId, requestBody.seatNumber, requestBody.userId);
         if (!updatedCinema) {
             response.status(404).send(`${requestBody.seat} is unavailable.`);
