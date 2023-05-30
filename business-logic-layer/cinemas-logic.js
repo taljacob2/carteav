@@ -1,4 +1,5 @@
 const dal = require("../data-access-layer/dal");
+const logsLogic = require("../business-logic-layer/logs-logic");
 
 async function getAllCinemasAsync() {
     const sql = `SELECT * FROM cinemas`;
@@ -27,7 +28,9 @@ async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
         throw new Error("seat is unavailable");
     }
 
-    const sql = `UPDATE cinemas SET ${seatNumber} = ${userId}
+    const newLog = logsLogic.addLogAsync({userId, value: "waiting for approval", timestamp: new Date().toISOString().slice(0, 19).replace("T", " ")})
+
+    const sql = `UPDATE cinemas SET ${seatNumber} = ${newLog.id}
                  WHERE id = ${cinemaId}`;
     
     await dal.executeAsync(sql);
