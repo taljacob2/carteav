@@ -50,6 +50,20 @@
         })
     }
 
+    let isAdminUser;
+    function isAdmin() {
+        $.get(`${HOST}/api/users/isAdmin/${localStorage.getItem("userId")}`,
+            function (data, status) {                
+                if (status === "success") {
+                    isAdminUser = data;
+                    console.log("isAdminUser", isAdminUser);
+                }
+            }
+        );
+
+        return isAdminUser;
+    }
+
     let selectedCinema;
     function getSeats(e) {
         $(".seat").remove();
@@ -60,7 +74,11 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            seats.append(`<div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
+            if (isAdminUser){
+                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat">approve</div><div class="decline-seat">decline</div></div></div>`);
+            } else {
+                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
+            }
             if (logId) {
                 $(`#seat${index + 1}`).addClass("taken");
             }
@@ -68,7 +86,6 @@
             $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
         }
     }
-
 
     pageLoader();
     function pageLoader() {
@@ -86,6 +103,7 @@
                 login(username.value);
             });
         } else if ($('.cinemas-page').length) {
+                isAdmin();
                 const select = $('#select-cinema');
                 select[0].addEventListener("change", getSeats);
 

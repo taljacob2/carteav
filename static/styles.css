@@ -46,8 +46,16 @@ a {
     margin-left: 3em;
 }
 
+div.all-buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1.5em;
+}
+
 div#seat-list {
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -66,4 +74,25 @@ div.seat {
 div.seat.taken {
     background-color: #ff3700af;
     cursor: auto;
+}
+
+
+div.admin-buttons {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.approve-seat {
+    background-color: #00ff7776;
+    cursor: auto;
+    border-radius: 0.2em;
+}
+
+div.decline-seat {
+    background-color: #ff660066;
+    cursor: auto;
+    border-radius: 0.2em;
 }
