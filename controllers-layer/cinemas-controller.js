@@ -1,13 +1,13 @@
 const express = require("express");
 
-const meetingsLogic = require("../business-logic-layer/cinemas-logic");
+const cinemasLogic = require("../business-logic-layer/cinemas-logic");
 
 const router = express.Router();
 
 // Get all
 router.get("/", async (request, response) => {
     try {
-        const cinemas = await meetingsLogic.getAllCinemasAsync();
+        const cinemas = await cinemasLogic.getAllCinemasAsync();
         response.json(cinemas);
     }
     catch (err) {
