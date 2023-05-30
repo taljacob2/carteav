@@ -17,8 +17,17 @@
 
     }
 
-    pageLoader();
+    
+    let cinemas;
+    function getCinemaSelection() {
+        const select = $('#select-cinema');
+        cinemas.forEach(cinema => {
+            select.append(`<option value="${cinema.id}">${cinema.time}</option>`);
+        });
+    }
 
+
+    pageLoader();
     function pageLoader() {
         if ($('.login-page').length) {
             let loginForm = document.getElementById("loginForm");
@@ -37,11 +46,12 @@
                 $.get(`${HOST}/api/cinemas`,
                 function (data, status) {                
                     if (status === "success") {
-                        console.log(data);
+                        cinemas = data;
+                        getCinemaSelection();
                     }
                 }
             );
         }
-    }
+    }    
 
 }(jQuery));
