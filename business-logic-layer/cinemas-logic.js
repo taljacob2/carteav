@@ -39,4 +39,6 @@ async function updateCinemaSeatAsync(cinemaId, seatNumber, userId) {
 
 module.exports = {
     getAllCinemasAsync,
+    updateCinemaSeatAsync,
+    getCinemaByIdAsync
 }
