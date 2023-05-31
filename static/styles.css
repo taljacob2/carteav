@@ -77,7 +77,6 @@ div.seat.taken {
     cursor: auto;
 }
 
-
 div.admin-buttons {
     display: flex;
     flex-direction: row;
