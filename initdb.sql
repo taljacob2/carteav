@@ -29,9 +29,9 @@ CREATE TABLE `cinemas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `cinemas` (`id`, `time`, `seat1`, `seat2`, `seat3`, `seat4`) VALUES
-(1,	'2023-05-30 10:37:18',	72,	NULL,	NULL,	NULL),
-(2,	'2023-05-30 10:37:24',	NULL,	NULL,	46,	NULL),
-(3,	'2023-05-30 10:37:26',	57,	NULL,	NULL,	NULL);
+(1,	'2023-05-30 10:37:18',	NULL,	NULL,	NULL,	NULL),
+(2,	'2023-05-30 10:37:24',	82,	NULL,	79,	NULL),
+(3,	'2023-05-30 10:37:26',	NULL,	NULL,	NULL,	NULL);
 
 CREATE TABLE `logs` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -102,7 +102,7 @@ INSERT INTO `logs` (`id`, `userId`, `value`, `timestamp`, `approved`, `seatNumbe
 (54,	1,	'admin declined',	'2023-05-30 21:53:05',	0,	'seat1'),
 (55,	1,	'waiting for approval',	'2023-05-30 21:53:25',	0,	'seat1'),
 (56,	1,	'admin declined',	'2023-05-30 21:53:25',	0,	'seat1'),
-(57,	1,	'waiting for approval',	'2023-05-30 21:53:45',	0,	'seat1'),
+(57,	1,	'The seat was not approved in the limited time',	'2023-05-30 21:53:45',	0,	'seat1'),
 (58,	1,	'waiting for approval',	'2023-05-30 21:53:50',	0,	'seat1'),
 (59,	1,	'waiting for approval',	'2023-05-30 21:53:55',	0,	'seat1'),
 (60,	1,	'waiting for approval',	'2023-05-30 21:53:56',	0,	'seat1'),
@@ -117,7 +117,22 @@ INSERT INTO `logs` (`id`, `userId`, `value`, `timestamp`, `approved`, `seatNumbe
 (69,	1,	'waiting for approval',	'2023-05-30 21:54:00',	0,	'seat1'),
 (70,	1,	'waiting for approval',	'2023-05-30 21:54:00',	0,	'seat1'),
 (71,	1,	'admin declined',	'2023-05-30 21:54:01',	0,	'seat1'),
-(72,	1,	'waiting for approval',	'2023-05-30 22:02:52',	0,	'seat1');
+(72,	1,	'The seat was not approved in the limited time',	'2023-05-30 22:02:52',	0,	'seat1'),
+(73,	1,	'The seat was not approved in the limited time',	'2023-05-31 05:21:12',	0,	'seat1'),
+(74,	1,	'The seat was not approved in the limited time',	'2023-05-31 05:26:37',	0,	'seat3'),
+(75,	1,	'The seat was not approved in the limited time',	'2023-05-31 06:00:33',	0,	'seat1'),
+(76,	1,	'admin declined',	'2023-05-31 06:00:35',	0,	'seat2'),
+(77,	1,	'admin declined',	'2023-05-31 06:08:10',	0,	'seat2'),
+(78,	1,	'admin declined',	'2023-05-31 06:10:12',	0,	'seat2'),
+(79,	1,	'admin approved',	'2023-05-31 06:10:52',	1,	'seat3'),
+(80,	1,	'admin declined',	'2023-05-31 06:26:28',	0,	'seat2'),
+(81,	1,	'admin declined',	'2023-05-31 06:45:18',	1,	'seat2'),
+(82,	1,	'admin approved',	'2023-05-31 06:48:08',	1,	'seat1'),
+(83,	1,	'admin declined',	'2023-05-31 07:03:41',	0,	'seat2'),
+(84,	1,	'admin declined',	'2023-05-31 07:03:50',	0,	'seat4'),
+(86,	1,	'The seat was not approved in the limited time',	'2023-05-31 07:11:40',	0,	'seat2'),
+(87,	1,	'The seat was not approved in the limited time',	'2023-05-31 07:27:35',	0,	'seat2'),
+(88,	1,	'admin declined',	'2023-05-31 07:27:47',	0,	'seat3');
 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -126,6 +141,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `users` (`id`, `username`) VALUES
-(1,	'admin');
+(1,	'admin'),
+(2,	'tal');
 
--- 2023-05-30 22:08:13
+-- 2023-05-31 08:01:51
