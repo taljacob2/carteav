@@ -135,8 +135,8 @@
                     if (!log.approved) {
                         $(`#seat${index + 1}`).after(`
                             <div class="admin-buttons">
-                                <div class="approve-seat seat${index + 1}">approve</div>
-                                <div class="decline-seat seat${index + 1}">decline</div>
+                                <div class="approve-seat seat${index + 1} admin-button">approve</div>
+                                <div class="decline-seat seat${index + 1} admin-button">decline</div>
                             </div>
                         `);
     
