@@ -2,7 +2,7 @@
     "use strict";
     console.clear();
 
-    function login(username) {        
+    function login(username) {
         $.get(`${HOST}/api/users/login/${username}`)
         .done(function(data, textStatus, jqXHR) {
             localStorage.setItem("userId", data.id);
@@ -55,7 +55,6 @@
             select.append(`<option class="cinema" value="${cinema.id}">${cinema.time}</option>`);
         });
     }
-
 
     let selectedSeatNumber;
     function insertLog(e) {
