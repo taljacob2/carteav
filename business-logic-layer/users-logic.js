@@ -15,6 +15,10 @@ async function getUserByUsernameAsync(username) {
 }
 
 async function addUserAsync(user) {
+    if (await getUserByUsernameAsync(user.username)) {
+        throw new Error("username has already been taken.");
+    }
+
     const sql = `INSERT INTO users VALUES (DEFAULT,
                  '${user.username}'
                   );`

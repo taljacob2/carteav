@@ -17,6 +17,24 @@
         localStorage.removeItem("userId");
         window.location.replace(`${HOST}`);
     }    
+
+    function register(username) {
+        $.ajax({
+            type: "POST",
+            url: `${HOST}/api/users`,
+            data: JSON.stringify({username: username}),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            success: function (data) {
+                localStorage.setItem("userId", data.id);
+                window.location.replace(`${HOST}/cinemas.html`);
+            },
+            error: function (data) {
+                $('span.error-message').text(data.responseText);
+            }
+        })
+    }
     
     let currentCinemaIdSelection;
     let cinemas;
@@ -173,6 +191,19 @@
                 }
         
                 login(username.value);
+            });
+        } else if ($('.register-page').length) {
+            let registerForm = document.getElementById("registerForm");
+            registerForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+              
+                let username = document.getElementById("username");
+              
+                if (username.value == "") {
+                    return;
+                }
+        
+                register(username.value);
             });
         } else if ($('.cinemas-page').length) {
                 isAdmin();

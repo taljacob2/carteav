@@ -23,19 +23,7 @@ router.post("/", async (request, response) => {
         response.status(201).send(addedUser);
     }
     catch (err) {
-        response.status(500).send(err.message);
-    }
-});
-
-// Add User
-router.post("/", async (request, response) => {
-    try {
-        const user = request.body;
-        const addedUser = await usersLogic.addUserAsync(user);
-        response.status(201).send(addedUser);
-    }
-    catch (err) {
-        response.status(500).send(err.message);
+        response.status(403).send(err.message);
     }
 });
 
