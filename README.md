@@ -13,6 +13,8 @@
     
     The application opens at http://localhost:3001
 
+    > **NOTE:** The first initialization of the database may take about 10 seconds.
+
   - To stop the application:
 
     ```
