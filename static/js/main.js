@@ -35,6 +35,15 @@
             }
         })
     }
+
+    function fetchSeatLogs() {
+        $.get(`${HOST}/api/users/logs/${localStorage.getItem("userId")}`)
+        .done(function(data, textStatus, jqXHR) {
+            const logs = data;
+
+            $("#seat-logs-content").text(`${JSON.stringify(logs, null, 4)}`);
+        })
+    }
     
     let currentCinemaIdSelection;
     let cinemas;
@@ -68,6 +77,8 @@
                 
             }
         })
+
+        fetchSeatLogs();
     }
 
     let isAdminUser;
@@ -99,6 +110,8 @@
                 
             }
         })
+
+        fetchSeatLogs();
     }
 
     function updateLogValueForDecline(logId) {
@@ -120,6 +133,8 @@
                 
             }
         })
+
+        fetchSeatLogs();
     }
 
     let selectedCinema;
@@ -175,15 +190,6 @@
                 });
             }
         }
-    }
-
-    function fetchSeatLogs() {
-        $.get(`${HOST}/api/users/logs/${localStorage.getItem("userId")}`)
-        .done(function(data, textStatus, jqXHR) {
-            const logs = data;
-
-            $("#seat-logs-content").text(`${JSON.stringify(logs, null, 4)}`);
-        })
     }
 
     pageLoader();
