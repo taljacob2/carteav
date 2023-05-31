@@ -97,5 +97,14 @@ div.decline-seat {
 
 div.form-section {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    padding: 2em;
+}
+
+.error-message {
+    background-color: #ff660066;
 }
