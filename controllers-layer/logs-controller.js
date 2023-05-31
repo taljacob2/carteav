@@ -19,7 +19,7 @@ router.put("/updateLogValue/declined/:logId", async (request, response) => {
     try {
         const logId = +request.params.logId;
         let logs = await logsLogic.updateLogValueAsync(logId, "admin declined");
-        await cinemasLogic.findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logs.id, logs.seatNumber);
+        await cinemasLogic.updateCinemaSeatAsNullAsync(logs.cinemaId, logs.seatNumber)
         response.json(logs);
     }
     catch (err) {

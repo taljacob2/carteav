@@ -22,7 +22,8 @@ async function addLogAsync(log) {
                  '${log.value}',
                  '${log.timestamp}',
                  '${logApproved}',
-                 '${log.seatNumber}'
+                 '${log.seatNumber}',
+                 '${log.cinemaId}'
                   );`
     
     const info = await dal.executeAsync(sql);
