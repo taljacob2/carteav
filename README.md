@@ -30,3 +30,10 @@
 |SQL Server Username:|`root`|
 |SQL Server Password:|`123456`|
 |SQL Server Database:|`cinemadb`|
+
+### Special Notes
+
+The administrator **username** is `admin`, and it is the only administrator user,
+which is able to **approve / decline** a purchase.
+
+You can login to the `admin` user through the login page.
