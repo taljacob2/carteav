@@ -18,3 +18,13 @@
     ```
     docker-compose down
     ```
+
+## Connection Details
+
+|Title|Detail|
+|:---|:---|
+|SQL Server Type:|MySQL|
+|SQL Server UI:|http://localhost:8061/|
+|SQL Server Username:|`root`|
+|SQL Server Password:|`123456`|
+|SQL Server Database:|`cinemadb`|
