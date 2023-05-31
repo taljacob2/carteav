@@ -3,17 +3,16 @@
     console.clear();
 
     function login(username) {        
-        $.get(`${HOST}/api/users/login/${username}`,
-            function (data, status) {                
-                if (status === "success") {
-                    localStorage.setItem("userId", data.id);
-                    window.location.replace(`${HOST}/cinemas.html`);
-                }
-            }
-        );
+        $.get(`${HOST}/api/users/login/${username}`)
+        .done(function(data, textStatus, jqXHR) {
+            localStorage.setItem("userId", data.id);
+            window.location.replace(`${HOST}/cinemas.html`);
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            $('span.error-message').text(jqXHR.responseText);
+        });
     }
-
-
+    
     
     let currentCinemaIdSelection;
     let cinemas;
@@ -55,7 +54,6 @@
             function (data, status) {                
                 if (status === "success") {
                     isAdminUser = data;
-                    console.log("isAdminUser", isAdminUser);
                 }
             }
         );
@@ -168,13 +166,11 @@
                 const select = $('#select-cinema');
                 select[0].addEventListener("change", getSeats);
 
-                $.get(`${HOST}/api/cinemas`,
-                function (data, status) {
-                    if (status === "success") {
-                        cinemas = data;
-                        getCinemaSelection();
-                    }
-                });
+                $.get(`${HOST}/api/cinemas`)
+                .done(function(data, textStatus, jqXHR) {
+                    cinemas = data;
+                    getCinemaSelection();
+                })
         }
     }    
 
