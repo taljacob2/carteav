@@ -43,8 +43,6 @@ async function updateLogAsApprovedByLogIdAsync(logId) {
 }
 
 async function updateLogValueAsync(logId, logValue) {
-    console.log(logId);
-    console.log(logValue);
     const sql = `UPDATE logs SET value = '${logValue}'
                  WHERE id = ${logId}`;
     
