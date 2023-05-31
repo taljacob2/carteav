@@ -126,3 +126,8 @@ div.logout-button {
     padding: 0.3em;
     cursor: pointer;
 }
+
+div#seat-logs {
+    background-color: aliceblue;
+    padding-left: 2em;
+}
