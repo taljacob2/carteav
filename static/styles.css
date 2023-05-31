@@ -94,3 +94,8 @@ div.approve-seat {
 div.decline-seat {
     background-color: #ff660066;
 }
+
+div.form-section {
+    display: flex;
+    justify-content: space-around;
+}
