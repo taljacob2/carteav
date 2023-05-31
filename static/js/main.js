@@ -142,11 +142,11 @@
     
                         $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
                         $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
-                    } else {
-                        $(`#seat${index + 1}`).after(`
-                            <span class="approved-by-admin">Approved by admin</span>
-                        `);
                     }
+
+                    $(`#seat${index + 1}`).after(`
+                        <span class="log-value">${log.value}</span>
+                    `);
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     console.error("error fetching log by id");
