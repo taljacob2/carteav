@@ -67,7 +67,7 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {                
-                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`)
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection}`)
                 .done(function(data, textStatus, jqXHR) {
                     cinemas[currentCinemaIdSelection - 1] = data;
                     getSeats();
@@ -88,7 +88,7 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`)
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection}`)
                 .done(function(data, textStatus, jqXHR) {
                     cinemas[currentCinemaIdSelection - 1] = data;
                     getSeats();
