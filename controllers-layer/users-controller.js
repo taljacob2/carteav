@@ -47,4 +47,17 @@ router.get("/isAdmin/:userId", async (request, response) => {
     response.status(200).send(userId === 1);
 });
 
+// Get all user logs
+router.get("/logs/:userId", async (request, response) => {
+    try {
+        const userId = +request.params.userId;
+        const userLogs = await usersLogic.getAllLogsOfUser(userId);
+        response.json(userLogs);
+    }
+    catch (err) {
+        response.status(500).send(err.message);
+    }
+});
+
+
 module.exports = router;

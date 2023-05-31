@@ -29,8 +29,18 @@ async function addUserAsync(user) {
     return user;
 }
 
+async function getAllLogsOfUser(userId) {
+    const sql = `SELECT value, timestamp AS "time of purchase", approved, seatNumber, (SELECT time FROM cinemas WHERE id = cinemaId) AS "cinema time"
+                 FROM logs 
+                 WHERE userid = ${userId}`;
+    
+    const userLogs = await dal.executeAsync(sql);
+    return userLogs;    
+}
+
 module.exports = {
     getAllUsersAsync,
     getUserByUsernameAsync,
-    addUserAsync
+    addUserAsync,
+    getAllLogsOfUser
 }
