@@ -1,10 +1,10 @@
 const mysql = require("mysql2");
 
 const connection = mysql.createPool({
-    host: process.env.MYSQLDB_HOST || config.mysql.host,
-    user: process.env.MYSQLDB_USER || config.mysql.user,
-    password: process.env.MYSQLDB_ROOT_PASSWORD || config.mysql.password,
-    database: config.mysql.database
+    host: process.env.MYSQLDB_HOST,
+    user: process.env.MYSQLDB_USER,
+    password: process.env.MYSQLDB_ROOT_PASSWORD,
+    database: process.env.MYSQLDB_DATABASE
 });
 
 function executeAsync(sql) {

@@ -2,13 +2,6 @@
 FROM node:16
 # ----- `FROM` (this section MUST be first) -----
 
-
-# ----- Variables -----
-# Port (MUST be the same as `NODE_DOCKER_PORT` in `.env` file)
-ENV NODE_DOCKER_PORT=3001
-# ----- Variables -----
-
-
 # ----- Build -----
 # Create app directory
 WORKDIR /app
@@ -23,6 +16,6 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE $NODE_DOCKER_PORT
+EXPOSE $NODE_LOCAL_PORT
 CMD [ "npm", "start" ]
 # ----- Build -----
