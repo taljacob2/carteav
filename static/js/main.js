@@ -110,15 +110,28 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            if (isAdminUser && logId){
-                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat seat${index + 1}">approve</div><div class="decline-seat seat${index + 1}">decline</div></div></div>`);
-                $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
-                $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
-            } else if (!logId) {
-                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div>`);
-            }
+            
+            seats.append(`
+                            <div class="all-buttons">
+                                <div class="seat" id="seat${index + 1}">
+                                    <div>seat${index + 1}</div>
+                                </div>
+                            </div>
+                        `);
+
             if (logId) {
                 $(`#seat${index + 1}`).addClass("taken");
+            }
+
+            if (isAdminUser && logId) {
+                $(`#seat${index + 1}`).after(`
+                                                <div class="admin-buttons">
+                                                    <div class="approve-seat seat${index + 1}">approve</div>
+                                                    <div class="decline-seat seat${index + 1}">decline</div>
+                                                </div>
+                                            `);
+                $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
+                $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
             }
 
             $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
