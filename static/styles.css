@@ -50,6 +50,7 @@ div.all-buttons {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     padding: 1.5em;
 }
 
@@ -137,4 +138,8 @@ div.seat-logs-container {
     flex-direction: column;
     justify-content: space-evenly;
     height: 5.5em;
+}
+
+.you-purchased-this {
+    background-color: rgb(152, 248, 209) !important;
 }
