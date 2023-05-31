@@ -110,7 +110,7 @@
         
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
-            
+
             seats.append(`
                             <div class="all-buttons">
                                 <div class="seat" id="seat${index + 1}">
@@ -119,22 +119,39 @@
                             </div>
                         `);
 
-            if (logId) {
+            if (!logId) {
+                $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
+            } else {
                 $(`#seat${index + 1}`).addClass("taken");
             }
 
             if (isAdminUser && logId) {
-                $(`#seat${index + 1}`).after(`
-                                                <div class="admin-buttons">
-                                                    <div class="approve-seat seat${index + 1}">approve</div>
-                                                    <div class="decline-seat seat${index + 1}">decline</div>
-                                                </div>
-                                            `);
-                $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
-                $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
-            }
 
-            $(`#seat${index + 1}`)[0].addEventListener("click", insertLog);
+                // Get log by id.
+                $.get(`${HOST}/api/logs/${logId}`)
+                .done(function(data, textStatus, jqXHR) {
+                    const log = data;
+
+                    if (!log.approved) {
+                        $(`#seat${index + 1}`).after(`
+                            <div class="admin-buttons">
+                                <div class="approve-seat seat${index + 1}">approve</div>
+                                <div class="decline-seat seat${index + 1}">decline</div>
+                            </div>
+                        `);
+    
+                        $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
+                        $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
+                    } else {
+                        $(`#seat${index + 1}`).after(`
+                            <span class="approved-by-admin">Approved by admin</span>
+                        `);
+                    }
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("error fetching log by id");
+                });
+            }
 
             // // Remove admin-buttons.
             // let log;
