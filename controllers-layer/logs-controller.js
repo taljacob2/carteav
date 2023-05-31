@@ -18,7 +18,7 @@ router.get("/:logId", async (request, response) => {
 router.put("/updateLogValue/declined/:logId", async (request, response) => {
     try {
         const logId = +request.params.logId;
-        const logs = await logsLogic.updateLogValueAsync(logId, "admin declined");
+        let logs = await logsLogic.updateLogValueAsync(logId, "admin declined");
         await cinemasLogic.findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logs.id, logs.seatNumber);
         response.json(logs);
     }
@@ -30,8 +30,7 @@ router.put("/updateLogValue/declined/:logId", async (request, response) => {
 router.put("/updateLogValue/approved/:logId", async (request, response) => {
     try {
         const logId = +request.params.logId;
-        console.log(logId);
-        const logs = await logsLogic.updateLogValueAsync(logId, "admin approved");
+        let logs = await logsLogic.updateLogValueAsync(logId, "admin approved");
         logs = await logsLogic.updateLogAsApprovedByLogIdAsync(logId);
         response.json(logs);
     }
