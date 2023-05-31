@@ -1,7 +1,5 @@
 const express = require("express");
-
 const cinemasLogic = require("../business-logic-layer/cinemas-logic");
-
 const router = express.Router();
 
 // Get all

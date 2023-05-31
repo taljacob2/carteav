@@ -1,7 +1,6 @@
 const express = require("express");
 const logsLogic = require("../business-logic-layer/logs-logic");
 const cinemasLogic = require("../business-logic-layer/cinemas-logic");
-
 const router = express.Router();
 
 router.get("/:logId", async (request, response) => {

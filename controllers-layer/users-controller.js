@@ -1,7 +1,5 @@
 const express = require("express");
-
 const usersLogic = require("../business-logic-layer/users-logic");
-
 const router = express.Router();
 
 // Get all
