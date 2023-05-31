@@ -111,7 +111,7 @@
         for (let index = 0; index < 4; index++) {
             const logId = selectedCinema[`seat${index + 1}`];
             if (isAdminUser && logId){
-                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat seat${index + 1}" onclick=updateLogValueForApproval(${logId})>approve</div><div class="decline-seat seat${index + 1}" onclick=updateLogValueForDecline(${logId})>decline</div></div></div>`);
+                seats.append(`<div class="all-buttons"><div class="seat" id="seat${index + 1}"><div>seat${index + 1}</div></div><div class="admin-buttons"><div class="approve-seat seat${index + 1}">approve</div><div class="decline-seat seat${index + 1}">decline</div></div></div>`);
                 $(`.approve-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForApproval(logId));
                 $(`.decline-seat.seat${index + 1}`)[0].addEventListener("click", () => updateLogValueForDecline(logId));
             } else if (!logId) {
