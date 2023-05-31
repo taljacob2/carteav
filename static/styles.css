@@ -117,3 +117,12 @@ span.log-value {
     background-color: #09d0d333;
     border-radius: 0.2em;
 }
+
+div.logout-button {
+    background-color: #09d0d333;
+    border-radius: 0.2em;
+    width: fit-content;
+    height: fit-content;
+    padding: 0.3em;
+    cursor: pointer;
+}

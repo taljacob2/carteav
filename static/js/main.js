@@ -12,7 +12,11 @@
             $('span.error-message').text(jqXHR.responseText);
         });
     }
-    
+
+    function logout() {
+        localStorage.removeItem("userId");
+        window.location.replace(`${HOST}`);
+    }    
     
     let currentCinemaIdSelection;
     let cinemas;
@@ -180,6 +184,8 @@
                     cinemas = data;
                     getCinemaSelection();
                 })
+
+                $("div.logout-button")[0].addEventListener("click", logout);
         }
     }    
 
