@@ -131,3 +131,10 @@ div#seat-logs {
     background-color: aliceblue;
     padding-left: 2em;
 }
+
+div.seat-logs-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 5.5em;
+}

@@ -182,8 +182,18 @@
                     }
 
                     $(`#seat${index + 1}`).after(`
+                        <div class="seat-logs-container seat${index + 1}"></div>
+                    `);
+
+                    $(`.seat-logs-container.seat${index + 1}`).append(`
                         <span class="log-value">${log.value}</span>
                     `);
+
+                    if (log.userId == localStorage.getItem("userId")) {
+                        $(`.seat-logs-container.seat${index + 1}`).append(`
+                            <span class="log-value you-purchased-this">you made this purchase</span>
+                        `);
+                    }
                 })
                 .fail(function(jqXHR, textStatus, errorThrown) {
                     console.error("error fetching log by id");
