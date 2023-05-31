@@ -50,13 +50,10 @@
 
     let isAdminUser;
     function isAdmin() {
-        $.get(`${HOST}/api/users/isAdmin/${localStorage.getItem("userId")}`,
-            function (data, status) {                
-                if (status === "success") {
-                    isAdminUser = data;
-                }
-            }
-        );
+        $.get(`${HOST}/api/users/isAdmin/${localStorage.getItem("userId")}`)
+        .done(function(data, textStatus, jqXHR) {
+            isAdminUser = data;
+        })
 
         return isAdminUser;
     }
@@ -69,14 +66,12 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            success: function (data) {
-                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`,
-                function (data, status) {
-                    if (status === "success") {
-                        cinemas[currentCinemaIdSelection - 1] = data;
-                        getSeats();
-                    }
-                });
+            success: function (data) {                
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`)
+                .done(function(data, textStatus, jqXHR) {
+                    cinemas[currentCinemaIdSelection - 1] = data;
+                    getSeats();
+                })
             },
             error: function (data) {
                 
@@ -93,13 +88,11 @@
                 'Content-Type': 'application/json'
             },
             success: function (data) {
-                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`,
-                function (data, status) {
-                    if (status === "success") {
-                        cinemas[currentCinemaIdSelection - 1] = data;
-                        getSeats();
-                    }
-                });
+                $.get(`${HOST}/api/cinemas/${currentCinemaIdSelection - 1}`)
+                .done(function(data, textStatus, jqXHR) {
+                    cinemas[currentCinemaIdSelection - 1] = data;
+                    getSeats();
+                })
             },
             error: function (data) {
                 
