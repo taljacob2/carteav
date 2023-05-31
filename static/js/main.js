@@ -177,6 +177,15 @@
         }
     }
 
+    function fetchSeatLogs() {
+        $.get(`${HOST}/api/users/logs/${localStorage.getItem("userId")}`)
+        .done(function(data, textStatus, jqXHR) {
+            const logs = data;
+
+            $("#seat-logs-content").text(`${JSON.stringify(logs, null, 4)}`);
+        })
+    }
+
     pageLoader();
     function pageLoader() {
         if ($('.login-page').length) {
@@ -217,6 +226,8 @@
                 })
 
                 $("div.logout-button")[0].addEventListener("click", logout);
+
+                fetchSeatLogs();
         }
     }    
 
