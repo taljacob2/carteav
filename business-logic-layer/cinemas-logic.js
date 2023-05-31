@@ -61,7 +61,6 @@ async function findLogIdSeatNumberInAllCinemasAndUpdateSeatAsNullAsync(logId, se
     
     const cinemas = await dal.executeAsync(sql);
     const cinema = cinemas[0];
-    console.log(cinema);
     if (!cinema) {
         return;
     }
