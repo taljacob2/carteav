@@ -162,14 +162,14 @@
                 $(`#seat${index + 1}`).addClass("taken");
             }
 
-            if (isAdminUser && logId) {
+            if (logId) {
 
                 // Get log by id.
                 $.get(`${HOST}/api/logs/${logId}`)
                 .done(function(data, textStatus, jqXHR) {
                     const log = data;
 
-                    if (!log.approved) {
+                    if (isAdminUser && !log.approved) {
                         $(`#seat${index + 1}`).after(`
                             <div class="admin-buttons">
                                 <div class="approve-seat seat${index + 1} admin-button">approve</div>
