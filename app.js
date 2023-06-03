@@ -26,7 +26,7 @@ server.use("/api/cinemas", cinemasController);
 server.use("/api/users", usersController);
 server.use("/api/logs", logsController);
 
-server.listen(3001, () => console.log("Listening..."));
+server.listen(process.env.NODE_LOCAL_PORT, () => console.log("Listening..."));
 
 // Start thread.
 setInterval(threadDeleteSeatAfterTimer.scanForOldUnaprovedSeatsAndDeleteThem, 1000 * 5)
