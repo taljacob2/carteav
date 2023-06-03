@@ -32,6 +32,7 @@ services:
     env_file: ./.env
     ports:
       - $NODE_LOCAL_PORT:$NODE_LOCAL_PORT
+      - $NODE_DEBUGGER_PORT:$NODE_DEBUGGER_PORT
     stdin_open: true
     tty: true
 

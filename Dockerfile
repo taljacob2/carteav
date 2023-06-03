@@ -17,5 +17,5 @@ RUN npm install
 COPY . .
 
 EXPOSE $NODE_LOCAL_PORT
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "start-debug" ]
 # ----- Build -----
